@@ -1,6 +1,6 @@
 # Flutter Learning
 
-Esse repositório é destinado a armazenar os códigos e anotações feitas durante o aprendizado de Flutter. Separado por pastas e seções, contendo seu respectivo conteúdo.
+Esse repositório é destinado a armazenar os códigos e anotações feitas durante o aprendizado de Flutter. Separado por pastas e seções, contendo seu respectivo conteúdo. Estou usando como base o [roadmap](https://roadmap.sh/flutter) do Flutter.
 
 ## Dart
 
