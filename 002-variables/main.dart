@@ -1,3 +1,5 @@
+// Informações retiradas da documentação em: https://dart.dev/language/variables
+
 void main() {
   // Declarando uma variável mutável com tipo inferido
   var name = "Wesley";
