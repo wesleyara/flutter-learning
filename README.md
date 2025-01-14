@@ -10,7 +10,7 @@ Seção destinada a anotações e códigos feitos em Dart. Dart é a linguagem d
 
 ### Instruções de uso
 
-Para instalar o Dart, basta acessar o [site oficial](https://dart.dev/get-dart) e seguir as instruções de instalação.
+Para instalar o Dart, basta acessar o [site oficial](https://dart.dev/get-dart) e seguir as instruções de instalação. A documentação do dart CLI está neste [link](https://dart.dev/tools/dart-tool).
 
 ```bash
 # Verificar a versão do Dart
@@ -35,3 +35,34 @@ dart compile js <arquivo.dart>
 - [005 - Operators](/005-operators/)
 - [006 - Control Flow](/006-control-flow/)
 - [007 - Http](/007-http/)
+
+## Flutter
+
+Seção destinada a anotações e códigos feitos em Flutter. Flutter é um kit de desenvolvimento de interface de usuário (UI toolkit) de código aberto criado pelo Google.
+
+- [Documentação](https://docs.flutter.dev/get-started/learn-flutter)
+
+### Instruções de uso
+
+Para instalar o Flutter, basta acessar o [site oficial](https://docs.flutter.dev/get-started/install) e seguir as instruções de instalação. A documentação do flutter CLI está neste [link](https://docs.flutter.dev/reference/flutter-cli).
+
+```bash
+# Verificar a versão do Flutter
+flutter --version
+
+# Criar um novo projeto Flutter
+flutter create <nome_do_projeto>
+
+# Executar o projeto
+flutter run
+
+# Instalar as dependências do projeto
+flutter pub get
+
+# Adicionar dependências ao projeto
+flutter pub add <nome_da_dependencia>
+```
+
+### Sumário
+
+- [008 - Flutter widgets](/008-flutter-widgets/)
