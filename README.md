@@ -31,3 +31,7 @@ dart compile js <arquivo.dart>
 - [001 - DartPad](/001-dartpad/)
 - [002 - Variáveis](/002-variables/)
 - [003 - Built-in Types](/003-built-in-types/)
+- [004 - Functions](/004-functions/)
+- [005 - Operators](/005-operators/)
+- [006 - Control Flow](/006-control-flow/)
+- [007 - Http](/007-http/)
