@@ -1,4 +1,4 @@
-# Functions em Dart
+# Functions in Dart
 
 Este documento fornece exemplos de diferentes tipos de funções em Dart, retirados da [documentação oficial](https://dart.dev/language/functions).
 
