@@ -68,55 +68,92 @@ class _CounterWidgetState extends State<CounterWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text('Counter: $_counter'),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+    return MyStateContext(
+        count: _counter,
+        onPressed: (int val) => _handleChangeCounter(val),
+        child: Column(
           children: [
-            ElevatedButton(
-              onPressed: () => _handleChangeCounter(1),
-              child: const Text('Increment'),
-            ),
-            Padding(padding: const EdgeInsets.all(8.0)),
-            ElevatedButton(
-              onPressed: () => _handleChangeCounter(-1),
-              child: const Text('Decrement'),
-            ),
+            Text('Counter: $_counter'),
+            RowButton(),
+            CounterDecimalPlaces(),
           ],
-        ),
-        CounterDecimalPlaces(count: _counter),
-      ],
-    );
+        ));
   }
+}
+
+// O widget MyStateContext é um widget InheritedWidget que armazena o estado do widget _CounterWidgetState e o método _handleChangeCounter. Ele é utilizado para passar o estado e o método para os widgets filhos.
+class MyStateContext extends InheritedWidget {
+  const MyStateContext({
+    super.key,
+    required this.count,
+    required this.onPressed,
+    required super.child,
+  });
+
+  final int count;
+  final void Function(int) onPressed;
+
+  static MyStateContext? of(BuildContext context) {
+    return context.dependOnInheritedWidgetOfExactType<MyStateContext>();
+  }
+
+  @override
+  bool updateShouldNotify(MyStateContext oldWidget) => count != oldWidget.count;
 }
 
 // O widget CounterDecimalPlaces é um widget stateless que recebe um parâmetro count e exibe a quantidade de casas decimais do valor. Apesar de ser um widget stateless, ele pode ser alterado sempre que a propriedade count for alterada.
 class CounterDecimalPlaces extends StatelessWidget {
-  const CounterDecimalPlaces({super.key, required this.count});
-
-  final int count;
-
-  String getDecimalPlaces() {
-    final Map<int, String> decimalPlaces = {
-      1: "unit",
-      2: "tens",
-      3: "hundreds",
-      4: "thousands",
-    };
-
-    final int countStringLength = count.toString().length;
-
-    return "Current decimal place: ${decimalPlaces[countStringLength]}";
-  }
+  const CounterDecimalPlaces({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final stateContext = MyStateContext.of(context);
+
+    String getDecimalPlaces() {
+      final Map<int, String> decimalPlaces = {
+        1: "unit",
+        2: "tens",
+        3: "hundreds",
+        4: "thousands",
+      };
+
+      final int countStringLength = stateContext!.count.toString().length;
+
+      return "Current decimal place: ${decimalPlaces[countStringLength]}";
+    }
+
     final String decimalPlaces = getDecimalPlaces();
 
     return Column(
       children: [
         Text(decimalPlaces),
+      ],
+    );
+  }
+}
+
+class RowButton extends StatelessWidget {
+  const RowButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    // O método MyStateContext.of(context) é utilizado para obter o estado e o método do widget _CounterWidgetState.
+    final stateContext = MyStateContext.of(context);
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        ElevatedButton(
+          onPressed: () => stateContext?.onPressed(1),
+          child: const Text('Increment'),
+        ),
+        Padding(padding: const EdgeInsets.all(8.0)),
+        ElevatedButton(
+          onPressed: stateContext?.count == 0
+              ? null
+              : () => stateContext?.onPressed(-1),
+          child: const Text('Decrement'),
+        ),
       ],
     );
   }
