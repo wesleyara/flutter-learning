@@ -72,6 +72,7 @@ class _CounterWidgetState extends State<CounterWidget> {
         count: _counter,
         onPressed: (int val) => _handleChangeCounter(val),
         child: Column(
+          spacing: 8,
           children: [
             Text('Counter: $_counter'),
             RowButton(),
@@ -140,14 +141,15 @@ class RowButton extends StatelessWidget {
     // O método MyStateContext.of(context) é utilizado para obter o estado e o método do widget _CounterWidgetState.
     final stateContext = MyStateContext.of(context);
 
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
+    return Wrap(
+      direction: Axis.horizontal,
+      spacing: 8,
+      runSpacing: 8,
       children: [
         ElevatedButton(
           onPressed: () => stateContext?.onPressed(1),
           child: const Text('Increment'),
         ),
-        Padding(padding: const EdgeInsets.all(8.0)),
         ElevatedButton(
           onPressed: stateContext?.count == 0
               ? null
